@@ -53,10 +53,8 @@ export default function Home() {
                             <Menu size={24} />
                         </button>
 
-                        <h1 className="text-xl font-bold flex items-center justify-center gap-2">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-violet-600">
-                                Do-Talk
-                            </span>
+                        <h1 className="text-2xl font-bold text-slate-800 tracking-wide whitespace-nowrap">
+                            Do-Talk <span className="text-sm font-semibold text-slate-500 ml-1">( 泰語 &lt;-&gt; ภาษาจีน)</span>
                         </h1>
 
                         <div className="flex items-center justify-end gap-3">

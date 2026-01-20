@@ -28,7 +28,7 @@ const TRANSLATIONS = {
         download_init: '下載並初始化',
         downloading: '下載中...',
         reset_cache: '重置所有模型緩存',
-        trans_settings: '翻譯設定',
+        // trans_settings: '翻譯設定', // Removed
         source_lang: '來源語言 (Source)',
         target_lang: '目標語言 (Target)',
         transcribe_only: '依來源語言轉寫 (Transcribe)',
@@ -42,94 +42,7 @@ const TRANSLATIONS = {
         volume_settings: '音量設定',
         version_settings: '版本設定',
         app_lang: '應用程式語言',
-        version_text: 'Do-Talk v1.3'
-    },
-    'en': {
-        settings: 'Settings',
-        model_download: '0. Model Download',
-        tiny_model: 'Tiny',
-        tiny_desc: 'Fast / Less Accurate',
-        base_model: 'Base',
-        base_desc: 'Slow / More Accurate',
-        current_select: 'Selected',
-        ready: 'Ready',
-        load_model: 'Load Model',
-        download_init: 'Download & Init',
-        downloading: 'Downloading...',
-        reset_cache: 'Reset All Cache',
-        trans_settings: 'Translation Settings',
-        source_lang: 'Source Language',
-        target_lang: 'Target Language',
-        transcribe_only: 'Transcribe (Source Lang)',
-        transcribe_note: '*Transcribe mode only',
-        headphone_settings: 'Headphones',
-        check_le_audio: 'Check LE Audio',
-        le_audio_supported: 'LE Audio Supported',
-        checking: 'Checking...',
-        right_ear: 'Right Ear',
-        left_ear: 'Left Ear',
-        volume_settings: 'Volume',
-        version_settings: 'Version Settings',
-        app_lang: 'App Language',
-        version_text: 'Do-Talk v1.3'
-    },
-    'vi': {
-        settings: 'Cài đặt',
-        model_download: '0. Tải xuống Mô hình',
-        tiny_model: 'Nhẹ (Tiny)',
-        tiny_desc: 'Nhanh / Kém chính xác',
-        base_model: 'Cơ bản (Base)',
-        base_desc: 'Chậm / Chính xác hơn',
-        current_select: 'Đang chọn',
-        ready: 'Sẵn sàng',
-        load_model: 'Tải Mô hình',
-        download_init: 'Tải & Khởi tạo',
-        downloading: 'Đang tải...',
-        reset_cache: 'Đặt lại bộ nhớ đệm',
-        trans_settings: 'Cài đặt Dịch',
-        source_lang: 'Ngôn ngữ Nguồn',
-        target_lang: 'Ngôn ngữ Đích',
-        transcribe_only: 'Chỉ Chuyển ngữ',
-        transcribe_note: '*Chỉ hỗ trợ chuyển ngữ',
-        headphone_settings: 'Tai nghe',
-        check_le_audio: 'Kiểm tra LE Audio',
-        le_audio_supported: 'Hỗ trợ LE Audio',
-        checking: 'Đang kiểm tra...',
-        right_ear: 'Tai Phải',
-        left_ear: 'Tai Trái',
-        volume_settings: 'Âm lượng',
-        version_settings: 'Cài đặt Phiên bản',
-        app_lang: 'Ngôn ngữ Ứng dụng',
-        version_text: 'Do-Talk v1.3'
-    },
-    'id': {
-        settings: 'Pengaturan',
-        model_download: '0. Unduh Model',
-        tiny_model: 'Ringan (Tiny)',
-        tiny_desc: 'Cepat / Kurang Akurat',
-        base_model: 'Dasar (Base)',
-        base_desc: 'Lambat / Lebih Akurat',
-        current_select: 'Dipilih',
-        ready: 'Siap',
-        load_model: 'Muat Model',
-        download_init: 'Unduh & Inisialisasi',
-        downloading: 'Mengunduh...',
-        reset_cache: 'Atur Ulang Cache',
-        trans_settings: 'Pengaturan Terjemahan',
-        source_lang: 'Bahasa Sumber',
-        target_lang: 'Bahasa Target',
-        transcribe_only: 'Transkripsi Saja',
-        transcribe_note: '*Hanya mode transkripsi',
-        headphone_settings: 'Headphone',
-        check_le_audio: 'Cek LE Audio',
-        le_audio_supported: 'Mendukung LE Audio',
-        checking: 'Memeriksa...',
-        right_ear: 'Telinga Kanan',
-        left_ear: 'Telinga Kiri',
-        volume_settings: 'Volume',
-        version_settings: 'Pengaturan Versi',
-        app_lang: 'Bahasa Aplikasi',
-        version_text: 'Do-Talk v1.3'
+        version_text: 'Do-Talk( 泰語 <-> ภาษาจีน)'
     },
     'th': {
         settings: 'การตั้งค่า',
@@ -144,7 +57,7 @@ const TRANSLATIONS = {
         download_init: 'ดาวน์โหลด & เริ่มต้น',
         downloading: 'กำลังดาวน์โหลด...',
         reset_cache: 'รีเซ็ตแคชทั้งหมด',
-        trans_settings: 'ตั้งค่าการแปล',
+        // trans_settings: 'ตั้งค่าการแปล', // Removed
         source_lang: 'ภาษาต้นทาง',
         target_lang: 'ภาษาปลายทาง',
         transcribe_only: 'ถอดความตามต้นฉบับ',
@@ -158,65 +71,7 @@ const TRANSLATIONS = {
         volume_settings: 'ระดับเสียง',
         version_settings: 'ตั้งค่าเวอร์ชัน',
         app_lang: 'ภาษาแอปพลิเคชัน',
-        version_text: 'Do-Talk v1.3'
-    },
-    'ja': {
-        settings: '設定',
-        model_download: '0. モデルダウンロード',
-        tiny_model: '軽量 (Tiny)',
-        tiny_desc: '高速 / 低精度',
-        base_model: '基本 (Base)',
-        base_desc: '低速 / 高精度',
-        current_select: '現在の選択',
-        ready: '準備完了',
-        load_model: 'モデルをロード',
-        download_init: 'ダウンロード & 初期化',
-        downloading: 'ダウンロード中...',
-        reset_cache: 'キャッシュをリセット',
-        trans_settings: '翻訳設定',
-        source_lang: 'ソース言語',
-        target_lang: 'ターゲット言語',
-        transcribe_only: '文字起こしのみ',
-        transcribe_note: '*現在は文字起こしのみ',
-        headphone_settings: 'ヘッドフォン',
-        check_le_audio: 'LE Audioを確認',
-        le_audio_supported: 'LE Audio 対応',
-        checking: '確認中...',
-        right_ear: '右耳',
-        left_ear: '左耳',
-        volume_settings: '音量',
-        version_settings: 'バージョン設定',
-        app_lang: 'アプリの言語',
-        version_text: 'Do-Talk v1.3'
-    },
-    'ko': {
-        settings: '설정',
-        model_download: '0. 모델 다운로드',
-        tiny_model: '경량 (Tiny)',
-        tiny_desc: '빠름 / 정확도 낮음',
-        base_model: '기본 (Base)',
-        base_desc: '느림 / 정확도 높음',
-        current_select: '현재 선택',
-        ready: '준비 완료',
-        load_model: '모델 로드',
-        download_init: '다운로드 및 초기화',
-        downloading: '다운로드 중...',
-        reset_cache: '캐시 초기화',
-        trans_settings: '번역 설정',
-        source_lang: '소스 언어',
-        target_lang: '타겟 언어',
-        transcribe_only: '받아쓰기 (소스 언어)',
-        transcribe_note: '*받아쓰기 모드만 지원',
-        headphone_settings: '헤드폰',
-        check_le_audio: 'LE Audio 확인',
-        le_audio_supported: 'LE Audio 지원',
-        checking: '확인 중...',
-        right_ear: '오른쪽 귀',
-        left_ear: '왼쪽 귀',
-        volume_settings: '볼륨',
-        version_settings: '버전 설정',
-        app_lang: '앱 언어',
-        version_text: 'Do-Talk v1.3'
+        version_text: 'Do-Talk( 泰語 <-> ภาษาจีน)'
     }
 };
 
@@ -427,42 +282,7 @@ export default function Sidebar({ isOpen, setIsOpen, modelConfig, hookUtils, onM
                             </div>
                         </div>
 
-                        {/* Section 1: Translation Settings */}
-                        <div>
-                            <h3 className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                                <Globe size={16} className="text-indigo-500" />
-                                {t.trans_settings}
-                            </h3>
-                            <div className="bg-white shadow-sm rounded-xl p-2 flex flex-col gap-3 w-full border border-slate-100">
-                                <div>
-                                    <label className="block text-xs font-medium text-slate-500 mb-1 ml-1">{t.source_lang}</label>
-                                    <select
-                                        value={language}
-                                        onChange={(e) => {
-                                            setLanguage(e.target.value);
-                                            // Re-init if ready
-                                            if (state.status === 'ready') initRecognizer(e.target.value, 'transcribe');
-                                        }}
-                                        className="w-full bg-slate-50 border-none rounded-md py-2 px-3 text-sm font-semibold text-slate-700 focus:ring-1 focus:ring-indigo-500"
-                                    >
-                                        {languages.map(l => (
-                                            <option key={l.code} value={l.code}>{l.flag} {l.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div className="opacity-50 pointer-events-none grayscale">
-                                    <label className="block text-xs font-medium text-slate-500 mb-1 ml-1">{t.target_lang}</label>
-                                    <select
-                                        value={targetLang}
-                                        onChange={(e) => setTargetLang(e.target.value)}
-                                        className="w-full bg-slate-50 border-none rounded-md py-2 px-3 text-sm font-semibold text-slate-700"
-                                    >
-                                        <option value="en">{t.transcribe_only}</option>
-                                    </select>
-                                    <p className="text-[10px] text-slate-400 mt-1 ml-1">{t.transcribe_note}</p>
-                                </div>
-                            </div>
-                        </div>
+                        {/* Section 1: Translation Settings - REMOVED */}
 
                         {/* Section 2: Headphone Settings */}
                         <div>
@@ -534,12 +354,7 @@ export default function Sidebar({ isOpen, setIsOpen, modelConfig, hookUtils, onM
                                     className="w-full bg-white border border-slate-200 rounded-lg py-2 px-3 text-sm font-semibold text-slate-700"
                                 >
                                     <option value="zh-TW">繁體中文 (Traditional Chinese)</option>
-                                    <option value="en">English</option>
-                                    <option value="vi">Tiếng Việt (Vietnamese)</option>
-                                    <option value="id">Bahasa Indonesia</option>
                                     <option value="th">ไทย (Thai)</option>
-                                    <option value="ja">日本語 (Japanese)</option>
-                                    <option value="ko">한국어 (Korean)</option>
                                 </select>
                             </div>
                         </div>
