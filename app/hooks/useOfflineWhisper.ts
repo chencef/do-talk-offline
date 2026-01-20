@@ -348,7 +348,18 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
             setState(prev => ({ ...prev, status: 'recording' }));
 
         } catch (error: any) {
-            setState(prev => ({ ...prev, error: error.message }));
+            console.error('[Microphone Error]', error);
+            let errorMessage = error.message;
+
+            if (error.name === 'NotFoundError' || error.message.includes('The object can not be found here')) {
+                errorMessage = '無法存取麥克風：找不到裝置。請確認手機權限已開啟，且並非使用 App 內建瀏覽器 (請使用 Chrome/Safari)。';
+            } else if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                errorMessage = '無法存取麥克風：權限被拒絕。請至瀏覽器設定開啟權限。';
+            } else if (error.name === 'NotReadableError' || error.name === 'TrackStartError') {
+                errorMessage = '無法存取麥克風：裝置可能被其他應用程式佔用。';
+            }
+
+            setState(prev => ({ ...prev, error: errorMessage }));
         }
 
     }, []);
