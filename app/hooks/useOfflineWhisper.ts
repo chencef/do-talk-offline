@@ -28,7 +28,7 @@ declare global {
 export interface WhisperState {
     status: 'idle' | 'loading' | 'downloading' | 'ready' | 'recording' | 'processing' | 'error';
     progress: number; // 0-100
-    transcript: string[];
+    transcript: { text: string; lang?: string }[];
     error: string | null;
     logs: string[];
 }
@@ -256,7 +256,7 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                     whisper: {
                         encoder: modelConfig.files.encoder,
                         decoder: modelConfig.files.decoder,
-                        language: language,
+                        language: '', // Auto detect
                         task: task,
                         tailPaddings: -1,
                     },
@@ -351,7 +351,10 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                         if (result.text.trim()) {
                             setState(prev => ({
                                 ...prev,
-                                transcript: [...prev.transcript, result.text]
+                                transcript: [...prev.transcript, {
+                                    text: result.text,
+                                    lang: result.lang || result.language || 'auto'
+                                }]
                             }));
                         }
                         stream.free();

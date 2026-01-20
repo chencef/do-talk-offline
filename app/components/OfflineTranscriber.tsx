@@ -53,13 +53,23 @@ export default function OfflineTranscriber({ hookUtils }: Props) {
                 className="flex-1 overflow-y-auto space-y-4 px-2 no-scrollbar"
                 style={{ minHeight: '300px' }}
             >
-                {[...state.transcript].reverse().map((text, idx) => (
+                {[...state.transcript].reverse().map((item, idx) => (
                     <div key={idx} className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 transition-all hover:shadow-md animate-in slide-in-from-top-2">
                         {/* Source Text (Original) */}
                         <div className="mb-2">
-                            <p className="text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">原文</p>
+                            <div className="flex items-center justify-between mb-1">
+                                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">原文</p>
+                                {item.lang && (
+                                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${item.lang === 'zh' ? 'bg-red-100 text-red-600' :
+                                            item.lang === 'th' ? 'bg-amber-100 text-amber-600' :
+                                                'bg-slate-100 text-slate-500'
+                                        }`}>
+                                        {item.lang === 'zh' ? '中文' : item.lang === 'th' ? '泰文' : item.lang}
+                                    </span>
+                                )}
+                            </div>
                             <div className="text-lg text-slate-800 font-medium leading-relaxed">
-                                {text}
+                                {item.text}
                             </div>
                         </div>
                     </div>
