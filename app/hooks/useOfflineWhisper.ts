@@ -140,8 +140,12 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
             return true;
         } catch (err: any) {
             console.error('[Whisper] Download error:', err);
-            log(`ERROR: ${err.message}`);
-            setState(prev => ({ ...prev, status: 'error', error: err.message }));
+            let msg = err.message;
+            if (err.name === 'QuotaExceededError' || msg.includes('not enough space')) {
+                msg = '手機儲存空間不足，無法下載模型。請嘗試：1. 清除瀏覽器快取 2. 關閉無痕模式 (空間限制較嚴) 3. 刪除手機不用的檔案。';
+            }
+            log(`ERROR: ${msg}`);
+            setState(prev => ({ ...prev, status: 'error', error: msg }));
             return false;
         }
     }, [modelConfig, log]);
