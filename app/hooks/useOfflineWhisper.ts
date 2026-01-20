@@ -216,6 +216,17 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                 const arrayBuffer = await blob.arrayBuffer();
                 const data = new Uint8Array(arrayBuffer);
 
+                // Wait for FS methods availability (race condition fix)
+                let fsRetries = 0;
+                const checkForFS = () => {
+                    return (Module.FS && Module.FS.writeFile) || Module.FS_createDataFile;
+                };
+
+                while (!checkForFS() && fsRetries < 50) {
+                    await new Promise(resolve => setTimeout(resolve, 100)); // Wait up to 5s
+                    fsRetries++;
+                }
+
                 if (Module.FS && Module.FS.writeFile) {
                     Module.FS.writeFile(name, data);
                 } else if (Module.FS_createDataFile) {
@@ -226,7 +237,8 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
 
                     Module.FS_createDataFile('/', name, data, true, true, true);
                 } else {
-                    throw new Error('No filesystem methods found on Module (FS.writeFile or FS_createDataFile missing)');
+                    console.error('[WASM] Module keys:', Object.keys(Module));
+                    throw new Error('No filesystem methods found on Module (FS.writeFile or FS_createDataFile missing). Traces: ' + Object.keys(Module).join(', '));
                 }
 
                 log(`Wrote ${name} to MEMFS`);
