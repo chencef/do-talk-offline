@@ -2,7 +2,7 @@
 title: Do Talk Offline
 emoji: 🗣️
 colorFrom: indigo
-colorTo: violet
+colorTo: purple
 sdk: docker
 pinned: false
 app_port: 3000
