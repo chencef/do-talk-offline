@@ -59,12 +59,11 @@ export default function OfflineTranscriber({ hookUtils }: Props) {
                         <div className="mb-2">
                             <div className="flex items-center justify-between mb-1">
                                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">原文</p>
-                                {item.lang && (
-                                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${item.lang === 'zh' ? 'bg-red-100 text-red-600' :
-                                            item.lang === 'th' ? 'bg-amber-100 text-amber-600' :
-                                                'bg-slate-100 text-slate-500'
+                                {/* Only show badge for Chinese and Thai as requested */}
+                                {(item.lang === 'zh' || item.lang === 'th') && (
+                                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider ${item.lang === 'zh' ? 'bg-red-100 text-red-600' : 'bg-amber-100 text-amber-600'
                                         }`}>
-                                        {item.lang === 'zh' ? '中文' : item.lang === 'th' ? '泰文' : item.lang}
+                                        {item.lang === 'zh' ? '中文' : '泰文'}
                                     </span>
                                 )}
                             </div>
