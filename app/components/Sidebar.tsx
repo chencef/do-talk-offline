@@ -363,7 +363,7 @@ export default function Sidebar({ isOpen, setIsOpen, modelConfig, hookUtils, onM
 
                     <div className="p-6 border-t border-slate-100 bg-slate-50">
                         <p className="text-xs text-center text-slate-400">
-                            {t.version_text}
+                            {t.version_text} <span className="block text-[10px] mt-1 opacity-50">v1.0.1 (Proxy Fix)</span>
                         </p>
                     </div>
                 </div>

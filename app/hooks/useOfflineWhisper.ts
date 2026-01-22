@@ -83,7 +83,8 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
     const downloadModel = useCallback(async () => {
         console.log('[Whisper] downloadModel called');
         setState(prev => ({ ...prev, status: 'downloading', progress: 0, error: null }));
-        log('Starting model check/download...');
+        console.log('[Whisper] v1.0.1: Starting download (Using Proxy)');
+        log('Starting model check/download (v1.0.1)...');
 
         try {
             log('Initializing storage...');
