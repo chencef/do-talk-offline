@@ -159,10 +159,7 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                 },
                 locateFile: (path: string) => {
                     log(`Locate File: ${path}`);
-                    if (path.endsWith('.data')) {
-                        return 'https://huggingface.co/k2-fsa/web-assembly-vad-asr-sherpa-onnx-ja-zipformer/resolve/main/sherpa-onnx-wasm-main-vad-asr.data';
-                    }
-                    return '/' + path; // Load from public root
+                    return '/' + path; // Load all files from public root
                 },
                 print: (text: string) => log(`[WASM] ${text}`),
                 printErr: (text: string) => console.error(`[WASM Err] ${text}`),

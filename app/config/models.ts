@@ -24,9 +24,9 @@ export const WHISPER_MODELS: Record<string, ModelConfig> = {
             vad: 'silero_vad.onnx',
         },
         urls: {
-            encoder: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-encoder.int8.onnx',
-            decoder: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-decoder.int8.onnx',
-            tokens: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-tiny/resolve/main/tiny-tokens.txt',
+            encoder: '/proxy-model/tiny/encoder',
+            decoder: '/proxy-model/tiny/decoder',
+            tokens: '/proxy-model/tiny/tokens',
             vad: '/silero_vad.onnx',
         }
     },
@@ -39,10 +39,9 @@ export const WHISPER_MODELS: Record<string, ModelConfig> = {
             vad: 'silero_vad.onnx', // Shared VAD
         },
         urls: {
-            // Using Hugging Face CDN for base model as well to avoid bundling large files
-            encoder: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-encoder.int8.onnx',
-            decoder: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-decoder.int8.onnx',
-            tokens: 'https://huggingface.co/csukuangfj/sherpa-onnx-whisper-base/resolve/main/base-tokens.txt',
+            encoder: '/proxy-model/base/encoder',
+            decoder: '/proxy-model/base/decoder',
+            tokens: '/proxy-model/base/tokens',
             vad: '/silero_vad.onnx',
         }
     }
