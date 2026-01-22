@@ -159,7 +159,10 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                 },
                 locateFile: (path: string) => {
                     log(`Locate File: ${path}`);
-                    return '/' + path; // Load all files from public root
+                    if (path.endsWith('.data')) {
+                        return '/proxy-model/wasm-data';
+                    }
+                    return '/' + path; // Load from public root
                 },
                 print: (text: string) => log(`[WASM] ${text}`),
                 printErr: (text: string) => console.error(`[WASM Err] ${text}`),
