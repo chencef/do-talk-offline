@@ -25,13 +25,7 @@ declare global {
     }
 }
 
-export interface WhisperState {
-    status: 'idle' | 'loading' | 'downloading' | 'ready' | 'recording' | 'processing' | 'error';
-    progress: number; // 0-100
-    transcript: { text: string; lang?: string }[];
-    error: string | null;
-    logs: string[];
-}
+import { WhisperState } from '../types/whisper';
 
 export function useOfflineWhisper(modelConfig: ModelConfig) {
     const [state, setState] = useState<WhisperState>({
@@ -78,7 +72,8 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
             const enc = await localforage.getItem(modelConfig.files.encoder);
             const dec = await localforage.getItem(modelConfig.files.decoder);
             const tok = await localforage.getItem(modelConfig.files.tokens);
-            return enc && dec && tok;
+            const vad = await localforage.getItem(modelConfig.files.vad);
+            return enc && dec && tok && vad;
         } catch (e) {
             return false;
         }
@@ -98,6 +93,7 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                 { url: modelConfig.urls.encoder, name: modelConfig.files.encoder },
                 { url: modelConfig.urls.decoder, name: modelConfig.files.decoder },
                 { url: modelConfig.urls.tokens, name: modelConfig.files.tokens },
+                { url: modelConfig.urls.vad, name: modelConfig.files.vad },
             ];
 
             let completed = 0;
@@ -163,6 +159,9 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
                 },
                 locateFile: (path: string) => {
                     log(`Locate File: ${path}`);
+                    if (path.endsWith('.data')) {
+                        return 'https://huggingface.co/k2-fsa/web-assembly-vad-asr-sherpa-onnx-ja-zipformer/resolve/main/sherpa-onnx-wasm-main-vad-asr.data';
+                    }
                     return '/' + path; // Load from public root
                 },
                 print: (text: string) => log(`[WASM] ${text}`),
@@ -213,7 +212,12 @@ export function useOfflineWhisper(modelConfig: ModelConfig) {
             }
 
             // Read from storage and write to Emscripten FS
-            const files = [modelConfig.files.encoder, modelConfig.files.decoder, modelConfig.files.tokens];
+            const files = [
+                modelConfig.files.encoder,
+                modelConfig.files.decoder,
+                modelConfig.files.tokens,
+                modelConfig.files.vad
+            ];
             for (const name of files) {
                 const blob = await localforage.getItem<Blob>(name);
                 if (!blob) throw new Error(`${name} not found in storage`);

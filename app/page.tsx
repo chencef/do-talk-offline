@@ -2,6 +2,7 @@
 
 import { WHISPER_MODELS } from './config/models';
 import { useOfflineWhisper } from './hooks/useOfflineWhisper';
+import { useOnlineWhisper } from './hooks/useOnlineWhisper';
 import Sidebar from './components/Sidebar';
 import OfflineTranscriber from './components/OfflineTranscriber';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -26,8 +27,12 @@ export default function Home() {
     }, []);
 
     const modelConfig = WHISPER_MODELS[modelKey];
-    const hookUtils = useOfflineWhisper(modelConfig);
-    const { state } = hookUtils;
+    const offlineHook = useOfflineWhisper(modelConfig);
+    const onlineHook = useOnlineWhisper();
+
+    // Switch logic: Use online hook if network available, otherwise offline hook
+    const activeHook = isOnline ? onlineHook : offlineHook;
+    const { state } = activeHook;
 
     return (
         <ErrorBoundary>
@@ -38,7 +43,7 @@ export default function Home() {
                     isOpen={isSidebarOpen}
                     setIsOpen={setIsSidebarOpen}
                     modelConfig={modelConfig}
-                    hookUtils={hookUtils}
+                    hookUtils={offlineHook}
                     onModelChange={setModelKey}
                     currentModelKey={modelKey}
                 />
@@ -59,17 +64,27 @@ export default function Home() {
 
                         <div className="flex items-center justify-end gap-3">
                             {/* Network Status */}
-                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 border border-slate-100" title={isOnline ? "Online" : "Offline"}>
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-50 border border-slate-100 relative group" title={isOnline ? "Online Mode (WhisperLive)" : "Offline Mode (Local WASM)"}>
                                 {isOnline ? (
-                                    <Wifi size={18} className="text-green-500" />
+                                    <>
+                                        <Wifi size={18} className="text-green-500" />
+                                        <div className="absolute top-9 right-0 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">
+                                            Online Mode
+                                        </div>
+                                    </>
                                 ) : (
-                                    <WifiOff size={18} className="text-slate-400" />
+                                    <>
+                                        <WifiOff size={18} className="text-slate-400" />
+                                        <div className="absolute top-9 right-0 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">
+                                            Offline Mode
+                                        </div>
+                                    </>
                                 )}
                             </div>
 
                             {/* Clear Transcript Button */}
                             <button
-                                onClick={hookUtils.clearTranscript}
+                                onClick={activeHook.clearTranscript}
                                 className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
                                 title="清除紀錄"
                             >
@@ -88,7 +103,7 @@ export default function Home() {
                         </div>
                     )}
 
-                    <OfflineTranscriber hookUtils={hookUtils} />
+                    <OfflineTranscriber hookUtils={activeHook} />
                 </main>
             </div>
         </ErrorBoundary>

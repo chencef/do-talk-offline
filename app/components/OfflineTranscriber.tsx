@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useOfflineWhisper } from '../hooks/useOfflineWhisper';
+import { TranscriberHookBase } from '../types/whisper';
 import { Mic, Square, Loader2, Volume2, History, Zap, RefreshCw } from 'lucide-react';
 
 interface Props {
-    hookUtils: ReturnType<typeof useOfflineWhisper>;
+    hookUtils: TranscriberHookBase;
 }
 
 export default function OfflineTranscriber({ hookUtils }: Props) {
